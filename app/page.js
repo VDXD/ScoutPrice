@@ -1,10 +1,24 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import KeyFeatureSectionn from "@/components/KeyFeatureSection";
 import WelcomeSection from "@/components/Welcome";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+
+  const handleShopClick = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    setTimeout(() => {
+      window.location.href = "/products";
+    }, 100);
+  };
+
   return (
     <>
       <section className="flex items-center justify-center px-6 md:px-20 py-24">
@@ -24,11 +38,16 @@ export default function Home() {
             smarter and saving easier every day.
           </p>
 
-          <Link href="/products" className="flex items-center justify-center ">
-            <div className="p-[3px] relative cursor-pointer max-w-sm">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-              <div className="px-8 py-2 bg-black rounded-[6px] font-bold relative group transition duration-200 text-white hover:bg-transparent">
-                Shop Smarter
+          <Link href="/products" passHref>
+            <div
+              onClick={handleShopClick}
+              className="flex items-center justify-center cursor-pointer"
+            >
+              <div className="p-[3px] relative cursor-pointer max-w-sm">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+                <div className="px-8 py-2 bg-black rounded-[6px] font-bold relative group transition duration-200 text-white hover:bg-transparent">
+                  {loading ? "Loading..." : "Shop Smarter"}
+                </div>
               </div>
             </div>
           </Link>
