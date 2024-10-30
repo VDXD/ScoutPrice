@@ -91,6 +91,10 @@ import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 import { connectToDB } from "@/lib/mongoose.js";
 import { NextResponse } from "next/server";
 
+export const maxDuration = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   try {
     // Ensure database connection
